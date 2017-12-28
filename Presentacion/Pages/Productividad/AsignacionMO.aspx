@@ -1,0 +1,561 @@
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Main.Master" CodeBehind="AsignacionMO.aspx.vb" Inherits="Presentacion.AsignacionMO" %>
+<%@ register assembly="DevExpress.Web.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+<asp:Content ID="MainHeader" ContentPlaceHolderID="head" runat="server">
+    <%-- <script>
+        /**
+         * limpia bloqueo por validacion
+         */
+        var validaDate = false;
+        var validaTexto = false;
+        $(function () {
+            var $j = jQuery.noConflict();
+            $j("#datepicker2").datepicker({ maxDate: '0' });
+            $j("#datepicker2").on("change", function () {
+
+                var selectedDate = $(this).val();
+                validaDate = true;
+                document.getElementById("datepicker2").style["background-color"] = "#FFF";
+                document.getElementById("test2").className = " w3-border";
+                $("#contenedorTabla").removeClass("disabledbutton");
+                $("#contenedorTabla2").removeClass("disabledbutton");
+                $("#openMod").removeClass("disabledbutton");
+
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        /**
+         * limpia bloqueo por trabajador asignado con checkbox
+        validar numeros negativos
+         */
+        //var selectCheckBox = false;
+        //var contador;
+        var conteoTrabajadores = 0;
+
+        //var rowIndex;
+        //var focusedColumn;
+
+        function checkedChanged(s, e) {
+
+            grdDetalle.batchEditApi.EndEdit()
+
+            conteoTrabajadores = 0;
+            var rowcount = grdDetalle.batchEditHelper.GetDataRowIndices();
+
+            for (var i = 0; i < rowcount.length; ++i) {
+                var checkval = grdDetalle.batchEditApi.GetCellValue(i, "chkbox");
+                console.log(checkval);
+                    if (checkval == "1") {
+                        conteoTrabajadores = conteoTrabajadores + 1;
+                        gridTrabajadores.batchEditApi.StartEdit(i, 2);
+                        gridTrabajadores.batchEditApi.SetCellValue(i, "default_class", "false");
+                        gridTrabajadores.batchEditApi.EndEdit();
+                        gridTrabajadores.batchEditApi.ValidateRow(i);
+                    }
+
+            }
+
+            document.getElementById('conteo').innerText = String(conteoTrabajadores);
+
+            //contador = grdDetalle.batchEditApi.GetCellValue(rowIndex, "chkbox")
+            
+            ////contador = e.rowValues[(s.GetColumnByField("chkbox").index)].value;
+
+            //selectCheckBox = true;
+            ////console.log(rowIndex);
+            //console.log(contador);
+
+            //$("#alertaWorker").removeClass("checkWorker");
+            //$("#contenedorTabla2").removeClass("disabledbutton");
+            //$("#openMod").removeClass("disabledbutton");
+
+            //if (contador == "true") {
+            //    conteoTrabajadores = conteoTrabajadores + 1;
+            //    document.getElementById('conteo').innerText = String(conteoTrabajadores);
+            //} else if (contador == "false") {
+
+            //    conteoTrabajadores = conteoTrabajadores - 1;
+            //    document.getElementById('conteo').innerText = String(conteoTrabajadores);
+            //}
+        
+        }
+
+        function grdTrab_BatchEditEndEditing(s, e) {
+            //rowIndex = e.visibleIndex;
+            //focusedColumn = e.focusedColumn;
+        }
+    </script>
+    <style>
+        .notify-badge {
+            position: relative;
+            right: -35px;
+            top: -45px;
+            background: #e6b800;
+            text-align: center;
+            border-radius: 10px 10px 10px 10px;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .checkWorker {
+            display: block !important;
+        }
+
+        .disabledbutton {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        .claseTest {
+            background-color: #005F6B;
+            font-weight: bold;
+        }
+
+        .claseTest1 {
+            background-color: #008C9E;
+        }
+
+        .claseTest2 {
+            background-color: #00B4CC;
+        }
+
+        .claseTest3 {
+            background-color: #343838;
+            color: #00DFFC !important;
+            font-weight: bold;
+        }
+
+        .dxgvHeader, .dxgvHeader table {
+            color: #f1f1f1;
+            border-color: #333;
+        }
+
+        .dxgvControl, .dxgvDisabled {
+            border: 1px solid #333;
+        }
+
+        .resultado {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .col {
+            word-wrap: break-word;
+        }
+    </style>--%>
+</asp:Content>
+
+<asp:content id="MainBody" contentplaceholderid="body" runat="server">
+     <script type="text/javascript">
+        function OnSelectedIndexChanged(s, e) {
+            grid.PerformCallback(s.GetValue());
+        }
+    </script>
+
+
+
+
+
+     <script type="text/javascript">
+        function grid_SelectionChanged(s,e) {
+            s.GetSelectedFieldValues("RUT_TRA;NOMBRE_TRA;ESPECIALIDAD", GetSelectedFieldValuesCallback);
+        }
+        function GetSelectedFieldValuesCallback(values) {
+            selList.BeginUpdate();
+            try {
+                selList.ClearItems();
+                for(var i=0;i<values.length;i++) {
+                    selList.AddItem(values[i]);
+                }
+            } finally {
+                selList.EndUpdate();
+            }
+            document.getElementById("selCount").innerHTML=grid.GetSelectedRowCount();
+        }
+    </script>
+
+      
+
+		<div class="page-header">
+			<h1><span class="text-light-gray">Asignación / </span>MO</h1>
+			<div class="pull-right">
+			
+			</div>
+		</div> <!-- / .page-header -->
+
+		<div class="row">
+     
+            
+            
+                   <div class="col-md-12">
+               <div class="panel panel-transparent">
+				
+					<div class="panel-body">
+						<table>
+                           
+                             <tr><td> Selecciona Fecha de Asignación :</td><td> <dx:ASPxDateEdit ID="txtFecha" runat="server" Theme="Moderno" AutoPostBack="True"></dx:ASPxDateEdit></td><td>&nbsp;&nbsp;&nbsp;  Selecciona Area del Proyecto :</td><td><dx:ASPxComboBox ID="ASPxComboBox1" runat="server" Theme="Moderno" DataSourceID="SqlDataSource4" TextField="NOMBRE_ARE" ValueField="ID_ARE">
+                                 </dx:ASPxComboBox>
+                                 <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:Foco_DemoConnectionString %>" SelectCommand="SP_MO_AREAS_BUSCAR" SelectCommandType="StoredProcedure">
+                                     <SelectParameters>
+                                         <asp:Parameter DefaultValue="1" Name="ID_OBR" Type="Int64" />
+                                     </SelectParameters>
+                                 </asp:SqlDataSource>
+                                 </td></tr>
+          
+						</table>
+                  
+                        
+					</div>
+				</div>
+			</div>
+   
+            <div class="col-md-4">
+                <div class="panel colourable">
+					<div class="panel-heading">
+						<span class="panel-title">Paso 2</span>
+						<div class="panel-heading-controls">
+							<span class="panel-heading-text"><em>Listado de Trabajadores </em>&nbsp;&nbsp; <span style="color: #ccc">|</span>&nbsp;&nbsp;</span>
+						     
+                        
+                                
+						</div>
+					</div> <!-- / .panel-heading -->
+					<div class="panel-body">
+                         <dx:ASPxGridView ID="GrillaTrabajador" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1"  Width="100%"     KeyFieldName        ="ID_TRA" EnableTheming="True" Theme="MetropolisBlue" ClientInstanceName="grid" ViewStateMode="Enabled">
+                                     <SettingsPager AlwaysShowPager="True" EnableAdaptivity="True" Mode="EndlessPaging" PageSize="5">
+                                     </SettingsPager>
+                                       <Settings  UseFixedTableLayout="True" VerticalScrollableHeight="300"  ShowGroupPanel="True" HorizontalScrollBarMode="Visible" />
+                                       <SettingsSearchPanel Visible="True" />
+                                       <Columns>
+                                           <dx:GridViewCommandColumn FixedStyle="Left" SelectAllCheckboxMode="AllPages" ShowSelectCheckbox="True" VisibleIndex="0">
+                                           </dx:GridViewCommandColumn>
+                                           <dx:GridViewDataTextColumn FieldName="ID_TRA" ReadOnly="True" VisibleIndex="2" Visible="False">
+                                               <EditFormSettings Visible="False" />
+                                           </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="NOMBRE_TRA" VisibleIndex="4"  Caption=" Trabajador" >
+                                           </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="RUT_TRA" VisibleIndex="3"  Caption="Rut" FixedStyle="Left" >
+                                           </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="ESPECIALIDAD" VisibleIndex="5"  Caption="Especialidad" >
+                                           </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="CARGO" VisibleIndex="6"  Caption="Cargo" >
+                                           </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="SUPERVISOR" ReadOnly="True" VisibleIndex="7"  Caption="Supervisor" >
+                                           </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="DIAS_ASIG" ReadOnly="True" VisibleIndex="8" Caption="Estado">
+                                           </dx:GridViewDataTextColumn>
+                                           <dx:GridViewDataTextColumn FieldName="DIAS_ASIS" ReadOnly="True" Visible="False" VisibleIndex="9">
+                                           </dx:GridViewDataTextColumn>
+                                       </Columns>
+                                       <ClientSideEvents SelectionChanged="grid_SelectionChanged" />
+
+<Styles>
+    <FixedColumn HorizontalAlign="Left" VerticalAlign="Middle" Wrap="True">
+    </FixedColumn>
+                                     </Styles>
+                                    </dx:ASPxGridView>
+		                               <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:Foco_DemoConnectionString %>" SelectCommand="SP_MO_ASIG_TRABAJADORES_BUSCAR" SelectCommandType="StoredProcedure">
+                                        <SelectParameters>
+                                            <asp:Parameter DefaultValue="1" Name="ID_OBR" Type="Int64" />
+                                            <asp:ControlParameter ControlID="txtFecha" DbType="Date" DefaultValue="" Name="FECHA_CORTE" PropertyName="Value" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+
+
+
+                         <br />
+        <br />
+          Cantidad de Trabajadores Seleccioandos: <span id="selCount" style="font-weight: bold">0</span>
+        <dx:ASPxListBox ID="ASPxListBox1" ClientInstanceName="selList" runat="server" Height="250px" Width="450px" Theme="Moderno">
+            <Columns>
+                <dx:ListBoxColumn Caption="Rut" Name="RUT_TRA" FieldName="RUT_TRA" Width="30px"  />
+                <dx:ListBoxColumn FieldName="NOMBRE_TRA" Name="NOMBRE_TRA" Caption="Nombre" Width="80px"></dx:ListBoxColumn>
+                <dx:ListBoxColumn Caption="ESPECIALIDAD" Name="ESPECIALIDAD" FieldName="ESPECIALIDAD" Width="35px"  />
+            </Columns>
+        </dx:ASPxListBox>
+        
+       
+
+                       
+					</div>
+				</div> <!-- / .panel -->
+            </div>
+     
+
+           
+
+
+
+          <div class="col-md-8">
+                <div class="panel colourable">
+					<div class="panel-heading">
+						<span class="panel-title">Paso 3</span>
+						<div class="panel-heading-controls">
+							<span class="panel-heading-text"><em>Listado de Actividades </em>&nbsp;&nbsp;<span style="color: #ccc">|</span>&nbsp;&nbsp;</span>
+					<asp:Button ID="btnAgregar" runat="server" Text="Agregar Actividad"  CssClass="btn btn-xs" />
+                           <%-- <button class="btn btn-xs" data-toggle="modal" data-target="#modal-sizes-2">Large modal</button>--%>
+                            
+
+						</div>
+					</div> <!-- / .panel-heading -->
+					<div class="panel-body">
+                        <dx:ASPxPopupControl ID="popupActividades" runat="server" Theme="Moderno" Modal="True" PopupAnimationType="Fade">
+                                 <ContentCollection>
+                                    <dx:PopupControlContentControl runat="server">
+                                        <div>
+                                            <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource3" KeyFieldName="ID_PAR" Theme="MetropolisBlue">
+                                                <SettingsDataSecurity AllowEdit="False" AllowInsert="False" AllowDelete="False"></SettingsDataSecurity>
+
+                                                <SettingsSearchPanel Visible="True"></SettingsSearchPanel>
+                                                <Columns>
+                                                    <dx:GridViewCommandColumn ShowSelectCheckbox="True" SelectAllCheckboxMode="Page" VisibleIndex="0"></dx:GridViewCommandColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="ID_PAR" ReadOnly="True" VisibleIndex="1">
+                                                        <EditFormSettings Visible="False"></EditFormSettings>
+                                                    </dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="CODIGO_PAR" VisibleIndex="2"></dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="NOMBRE_PAR" VisibleIndex="3"></dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="UM" VisibleIndex="4"></dx:GridViewDataTextColumn>
+                                                    <dx:GridViewDataTextColumn FieldName="CANT_AVA" ReadOnly="True" VisibleIndex="5"></dx:GridViewDataTextColumn>
+                                                </Columns>
+
+<%--<Styles AdaptiveDetailButtonWidth="22"></Styles>--%>
+
+                                            </dx:ASPxGridView>
+                                            <asp:Button ID="btnAgregarNuevaActividad" runat="server" Text="Agregar" />
+
+                                            <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:Foco_DemoConnectionString %>' SelectCommand="SP_MO_ASIG_PARTIDAS_BUSCAR" SelectCommandType="StoredProcedure">
+                                                <SelectParameters>
+                                                    <asp:Parameter DefaultValue="1" Name="ID_OBR" Type="Int64"></asp:Parameter>
+                                                    <asp:ControlParameter ControlID="txtFecha" PropertyName="Value" DbType="Date" DefaultValue="" Name="FECHA_CORTE"></asp:ControlParameter>
+                                                </SelectParameters>
+                                            </asp:SqlDataSource>
+                                        </div>
+                                    </dx:PopupControlContentControl>
+                                </ContentCollection>
+
+                        </dx:ASPxPopupControl>
+						     <dx:ASPxGridView ID="gridActividades" runat="server" AutoGenerateColumns="False" KeyFieldName="ID_PAR" EnablePagingGestures="True" Width="100%" Theme="MetropolisBlue" EnableTheming="True">
+                                <SettingsPager AlwaysShowPager="True" PageSize="13">
+                                </SettingsPager>
+                                <Settings UseFixedTableLayout="True" VerticalScrollableHeight="500" ShowHeaderFilterBlankItems="False" />
+                                <SettingsDataSecurity AllowDelete="False" AllowInsert="False" AllowEdit="False"></SettingsDataSecurity>
+
+                                <SettingsSearchPanel Visible="True" />
+                                <Columns>
+                                    <dx:GridViewDataTextColumn FieldName="ID_PAR" ReadOnly="True" VisibleIndex="0" Visible="False">
+                                        <EditFormSettings Visible="False"></EditFormSettings>
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="CODIGO_PAR" VisibleIndex="1" Caption="Cod" Width="4%">
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+
+                                        <CellStyle HorizontalAlign="Left" VerticalAlign="Middle"></CellStyle>
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="NOMBRE_PAR" VisibleIndex="2" Caption="Actividad" Width="18%">
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+
+                                        <CellStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="True" Font-Bold="True" Font-Size="XX-Small"></CellStyle>
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="UM" VisibleIndex="3" Caption="u.m." Width="4%">
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+
+                                        <CellStyle HorizontalAlign="Center" VerticalAlign="Middle"></CellStyle>
+                                    </dx:GridViewDataTextColumn>
+                                    <dx:GridViewDataTextColumn FieldName="CANT_AVA" ReadOnly="True" VisibleIndex="4" Caption="% avance" Width="6%">
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+
+                                        <CellStyle HorizontalAlign="Center" VerticalAlign="Middle"></CellStyle>
+                                    </dx:GridViewDataTextColumn>
+
+
+                                    <dx:GridViewBandColumn Caption="L" VisibleIndex="5" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="1" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="M" VisibleIndex="6" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="2" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="M" VisibleIndex="7" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="3" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                              
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="J" VisibleIndex="8" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="4" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                            
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="V" VisibleIndex="9" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="5" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                               
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="S" VisibleIndex="10" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="6" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                              
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="D" VisibleIndex="11" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="7" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                             
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="L" VisibleIndex="12" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="8" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                              
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="M" VisibleIndex="13" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="9" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                              
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="M" VisibleIndex="14" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="10" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                              
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="J" VisibleIndex="15" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="11" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                             
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="V" VisibleIndex="16" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="12" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                             
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="S" VisibleIndex="17" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="13" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                             
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+                                    <dx:GridViewBandColumn Caption="D" VisibleIndex="20" HeaderStyle-CssClass="claseTest">
+                                        <Columns>
+                                            <dx:GridViewDataTextColumn Caption="14" VisibleIndex="0" HeaderStyle-CssClass="claseTest" Width="4%">
+                                              
+
+                                                <HeaderStyle CssClass="claseTest"></HeaderStyle>
+                                            </dx:GridViewDataTextColumn>
+                                        </Columns>
+
+                                        <HeaderStyle CssClass="claseTest" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+                                    </dx:GridViewBandColumn>
+
+                                    <dx:GridViewDataTextColumn Width="5%" Caption="Total" VisibleIndex="21">
+                                        <HeaderStyle Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle"></HeaderStyle>
+
+                                        <CellStyle Font-Bold="True" Font-Size="XX-Small"></CellStyle>
+                                    </dx:GridViewDataTextColumn>
+                                </Columns>
+
+<Styles AdaptiveDetailButtonWidth="22"></Styles>
+
+                            </dx:ASPxGridView>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:Foco_DemoConnectionString %>' SelectCommand="SP_MO_ASIG_PARTIDAS_BUSCAR" SelectCommandType="StoredProcedure">
+                                <SelectParameters>
+                                    <asp:Parameter DefaultValue="1" Name="ID_OBR" Type="Int64"></asp:Parameter>
+                                    <asp:ControlParameter ControlID="txtFecha" PropertyName="Value" DbType="Date" DefaultValue="" Name="FECHA_CORTE"></asp:ControlParameter>
+                                </SelectParameters>
+                            </asp:SqlDataSource>
+
+
+					</div>
+				</div> <!-- / .panel -->
+            </div>
+     
+
+         
+
+
+
+
+
+
+
+	</div> <!-- / #content-wrapper -->
+
+
+
+
+</asp:content>

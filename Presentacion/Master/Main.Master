@@ -1,0 +1,203 @@
+﻿<%@ Master Language="vb" AutoEventWireup="false" CodeBehind="Main.master.vb" Inherits="Presentacion.Main" %>
+<!DOCTYPE html>
+<html class="gt-ie8 gt-ie9 not-ie"> 
+<head runat="server">
+<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--%>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Foco en Obra</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">	
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&subset=latin" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/pixel-admin.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/widgets.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/pages.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
+	
+    <style>
+     body{color:#17649A !important;}
+     #demo-settings-toggler{display:none;}
+     .theme-default #main-navbar .navbar-header{background:#17649A;}
+     .theme-default.main-menu-right #main-navbar .navbar-header, .theme-default.mmc #main-navbar .navbar-header{background:#17649A;}
+     .panel-footer{text-align:center}
+	</style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body class="theme-default main-menu-animated">
+<script>var init = [];</script>
+<div id="main-wrapper">
+	<div id="main-navbar" class="navbar navbar-inverse" role="navigation">
+        <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i>
+            <span class="hide-menu-text">HIDE MENU</span></button>		
+		<div class="navbar-inner">
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand">
+					<div>
+                        <img alt="Pixel Admin" src="../../assets/images/pixel-admin/main-navbar-logo.png">
+					</div>
+					<strong>FOCO EN OBRA</strong>
+				</a>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
+			</div> 
+
+        <!-- Navegador links barra superior -->
+			<div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
+				<div>
+					<ul class="nav navbar-nav">
+						
+                        <li>
+							<a href="#">INICIO</a>
+						</li>
+				    <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">PROYECTOS</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">La Copa Negrete</a></li>
+								<li><a href="#">Las Palmas</a></li>
+								<li><a href="#">Gauss II</a></li>
+							</ul>
+						</li>
+					</ul> 
+                    <!-- Navegador links barra superior derecha -->
+					<div class="right clearfix">
+						<ul class="nav navbar-nav pull-right right-navbar-nav">
+							<li>
+								<form class="navbar-form pull-left">
+									<input type="text" class="form-control" placeholder="Buscar...">
+								</form>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+									<img src="../../assets/demo/avatars/1.jpg" alt="">
+									<span><b>SOCOVESA</b></span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#"><span class="badge badge-primary pull-right">2</span>Mi Empresa</a></li>
+									<li><a href="#"><span class="badge badge-primary pull-right">1</span>Mi Cuenta</a></li>
+									<li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Configuración</a></li>
+									<li class="divider"></li>
+									<li><a href="#"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Salir de Foco</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div> 
+		</div> 
+	</div> <!-- END TOP BAR -->
+
+
+	<div id="main-menu" role="navigation">
+		<div id="main-menu-inner">
+			<div class="menu-content top" id="menu-content-demo">
+				<div>
+					<div class="text-bg"><span class="text-semibold">Nombre Empresa</span></div>
+					<div class="btn-group">
+						<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
+						<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
+						<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a>
+						<a href="#" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
+					</div>
+					<a href="#" class="close">&times;</a>
+				</div>
+			</div>
+
+			<ul class="navigation">
+                
+                <li><a href="../Seguridad/initConfig.aspx"><i class="menu-icon fa fa-gear"></i><span class="mm-text">Configuración Inicial</span></a></li>
+                <li><a href="#"><i class="menu-icon fa fa-tasks"></i><span class="mm-text">Cuadro de Mando</span></a></li>
+				
+                <li class="mm-dropdown"><a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Avances</span></a>
+				<ul><li><a tabindex="-1" href="#"><i class="menu-icon fa fa-dot-circle-o"></i><span class="mm-text">Configuración</span></a></li>
+					<li><a tabindex="-1" href="#"><i class="menu-icon fa fa-keyboard-o"></i><span class="mm-text">Toma de Avance</span><%--<span class="label label-warning">Updated</span>--%></a></li>
+                    <li><a tabindex="-1" href="#"><i class="menu-icon fa fa-file-text-o"></i><span class="mm-text">Consulta de Avance</span><%--<span class="label label-warning">Updated</span>--%></a></li>
+				</ul>
+				</li>
+			
+				<li class="mm-dropdown">
+					<a href="#"><i class="menu-icon fa fa-align-left"></i><span class="mm-text">Productividad</span></a>
+				<ul><li><a tabindex="-1" href="../Productividad/ImportaAsistencia.aspx"><i class="menu-icon fa fa-users"></i><span class="mm-text">Importa Asistencia</span></a></li>
+					<li><a tabindex="-1" href="../Productividad/ControlAsistencia.aspx"><i class="menu-icon fa fa-building-o"></i><span class="mm-text">Control de Asistencia</span></a></li>
+	                <li><a tabindex="-1" href="../Productividad/ImportaLibro.aspx"><i class="menu-icon fa fa-align-left"></i><span class="mm-text">Importa Libro</span></a></li>
+					<li><a tabindex="-1" href="../Productividad/ControlLibro.aspx"><i class="menu-icon fa fa fa-align-left"></i><span class="mm-text">Control de Libro</span></a></li>
+					<li><a tabindex="-1" href="../Productividad/ImportaFichas.aspx"><i class="menu-icon fa fa-book"></i><span class="mm-text">Importa Fichas</span></a></li>
+                    <li><a tabindex="-1" href="../Productividad/ControlFichas.aspx"><i class="menu-icon fa fa-suitcase"></i><span class="mm-text">Control de Fichas</span></a></li>
+                </ul> 
+                </li>
+
+                <li class="mm-dropdown">
+					<a href="#"><i class="menu-icon fa fa-gear"></i><span class="mm-text">Configuración Sistema</span></a>
+                    <ul><li><a tabindex="-1" href="../Productividad/ConfigSistema.aspx"><i class="menu-icon fa fa-building-o"></i><span class="mm-text">Empresa</span></a></li>
+						<li><a tabindex="-1" href="../Productividad/ConfigSistemaOp1.aspx"><i class="menu-icon fa fa-gear"></i><span class="mm-text">Proyectos</span></a></li>
+						<li><a tabindex="-1" href="../Productividad/ConfigSistemaOp2.aspx"><i class="menu-icon fa fa-map-marker"></i><span class="mm-text">Ubicaciones</span></a></li>
+						<li><a tabindex="-1" href="../Productividad/ConfigSistemaOp3.aspx"><i class="menu-icon fa fa-calendar"></i><span class="mm-text">Calendario</span></a></li>
+						<li><a tabindex="-1" href="../Productividad/ConfigSistemaOp4.aspx"><i class="menu-icon fa fa-user"></i><span class="mm-text">Supervisores</span></a></li>
+                        <li><a tabindex="-1" href="../Productividad/ConfigSistemaOp5.aspx"><i class="menu-icon fa fa-book"></i><span class="mm-text">Área/Especialidad/Cargo</span></a></li>
+                        <li><a tabindex="-1" href="../Productividad/ConfigSistemaOp6.aspx"><i class="menu-icon fa fa-flag"></i><span class="mm-text">Actividades de Control</span></a></li>
+                        <li><a tabindex="-1" href="../Productividad/ConfigSistemaOp7.aspx"><i class="menu-icon fa fa-tachometer"></i><span class="mm-text">Unidades de Medida</span></a></li>
+                        <li><a tabindex="-1" href="../Productividad/ConfigSistemaOp8.aspx"><i class="menu-icon fa fa-lightbulb-o"></i><span class="mm-text">Etapas Constructivas</span></a></li>
+                    </ul> 
+                </li>
+                 <li class="mm-dropdown">
+					<a href="#"><i class="menu-icon fa fa-gear"></i><span class="mm-text">Calidad de Obra</span></a>
+                    <ul><li><a tabindex="-1" href="../Productividad/calElabRegistro.aspx"><i class="menu-icon fa fa-building-o"></i><span class="mm-text">Elaborar Registro</span></a></li>
+						<li><a tabindex="-1" href="../Productividad/ccoInspeccionTerreno.aspx"><i class="menu-icon fa fa-gear"></i><span class="mm-text">Listado ACC</span></a></li>
+					<li><a tabindex="-1" href="../Productividad/ccoInspeccionTerreno.aspx"><i class="menu-icon fa fa-gear"></i><span class="mm-text">inspeccción en terreno</span></a></li>
+                    </ul> 
+                </li>
+			</ul>  <!-- END SIDEBAR -->
+		</div> 
+	</div> 
+
+    <div id="content-wrapper">
+        <!-- ID DE BODY = form1 -->
+         <form id="form1" runat="server">
+            <asp:contentplaceholder id="body" runat="server">
+            </asp:contentplaceholder>
+         </form>
+	</div> 
+
+	<div id="main-menu-bg">
+	</div>
+
+    <!-- FOOTER RRSS - ETC -->
+    <footer class="panel-footer bg-panel">
+            <p><strong>Conecta con Foco</strong>&nbsp;&nbsp;<a href="#"><i class="lg-nav-icon fa fa-facebook-square"></i>&nbsp;&nbsp;Facebook</a>&nbsp;&nbsp;
+			<a href="#"><i class="lg-nav-icon fa fa-skype"></i>&nbsp;&nbsp;Skype</a>&nbsp;&nbsp;
+			<a href="#"><i class="lg-nav-icon fa fa-linkedin-square"></i>&nbsp;&nbsp;Linkedin</a>&nbsp;&nbsp;
+			<a href="#"><i class="lg-nav-icon fa  fa-phone-square"></i>&nbsp;&nbsp;Fono</a>&nbsp;&nbsp;
+			<a href="#"><i class="lg-nav-icon fa  fa-envelope-o"></i>&nbsp;&nbsp;Correo</a></p>
+            <p style="font-size:10px">Todos los derechos reservados &copy; 2017 | Foco en Obra - Gestión por Compromiso</p>
+    </footer>
+</div> 
+    <!-- End Wrapper -->
+
+<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">' + "<" + "/script>"); </script>
+<script src="../../../assets/javascripts/jquery.transit.min.js"></script>
+<script src="../../../assets/javascripts/bootstrap.min.js"></script>
+<script src="../../../assets/javascripts/pixel-admin.min.js"></script>
+<script src="../../../assets/javascripts/jquery-qrcode.min.js"></script>
+
+<script type="text/javascript">
+    init.push(function () {});
+    window.PixelAdmin.start(init);
+
+</script>
+    <script type="text/javascript">
+        //<![CDATA[
+        $(window).on('load', function () { // makes sure the whole site is loaded 
+            $('#status').fadeOut(); // will first fade out the loading animation 
+            $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website. 
+            $('body').delay(350).css({ 'overflow': 'visible' });
+        })
+    //]]>
+        jQuery("#demo").qrcode({
+            //render:"table"
+            width: 128,
+            height: 128,
+            text: "http://ourcodeworld.com"
+</script>
+</body>
+</html>

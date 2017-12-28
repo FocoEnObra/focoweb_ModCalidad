@@ -1,0 +1,281 @@
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Master/Main.Master" CodeBehind="ControlLibro.aspx.vb" Inherits="Presentacion.ControlLibro" %>
+<%@ register assembly="DevExpress.Web.v17.2, Version=17.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web" tagprefix="dx" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+         .claseTest {
+            background-color: #005F6B !important;
+            font-weight: normal;
+            font-size:10px;
+            /*color:#F1F1F1 !important;*/
+            text-transform:uppercase;
+        }
+
+         .dxgvHeader, .dxgvHeader table{
+             color:#F1F1F1;
+         }
+
+       .dxgvHeader{
+           background-color:#008c9e;
+           border: 1px solid #005F6B;
+       }
+       .px-single input.px + .lbl{
+           margin-bottom:-2px !important;
+       }
+
+       #panelEdited{
+           padding-top:5px;
+       }
+
+    </style>
+
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" runat="server">
+    <div class="row">
+    <div class="panel">
+        <div class="panel-heading">
+			<span class="panel-title" style="color:#17649A"><b>CONTROL DE LIBRO</b></span>
+                <%--<div class="panel-heading-controls">
+							<span class="panel-heading-text">
+                                <button class="btn btn-xs btn-info"> <i class="fa fa-user fa-1x" aria-hidden="true" style="color:#f1f1f1"></i>&nbsp;&nbsp LISTADO TRABAJADORES</button>
+                                <button id="modalBtn" class="btn btn-xs btn-info" data-toggle="modal" data-target="#uidemo-modals-alerts-info"> <i class="fa fa-book fa-1x" aria-hidden="true" style="color:#f1f1f1"></i>&nbsp;&nbsp LEYENDAS</button>
+                                <button class="btn btn-xs btn-info"><i class="fa fa-table fa-1x" aria-hidden="true" style="color:#f1f1f1"></i>&nbsp;&nbsp EXPORTAR ARCHIVO</button>
+                                <button class="btn btn-xs btn-danger"> <i class="fa fa-medkit fa-1x" aria-hidden="true" style="color:#f1f1f1"></i>&nbsp;&nbsp AYUDA</button>
+							</span> 
+				</div>--%>
+
+           
+		</div>
+
+        <div class="row">
+          <div class="col-md-12" style="margin-top:7px;"> 
+              <div class="col-md-12"><div class="col-md-12">
+              <%--<p>Bienvenido al registro de asistencia</p>--%>
+              </div>
+          </div>
+        </div>
+            <div class="col-md-12">
+      <div class="col-md-3">
+               <div class="panel form-horizontal">
+                    <div class="panel-body bg-panel">
+                         <i class="fa fa-gear fa-spin" aria-hidden="true" style="color:#008080"></i>                      
+                             <label class="control-label">Selecciona Proyecto</label>
+							     <div class="form-group no-margin-hr">
+									          <select class="form-control input-sm">
+                                                   <option value="" selected disabled>La Copa Negrete</option>
+							                       <option value="">Proyecto 1 (Fuego)</option>
+                                                   <option value="">Proyecto 2</option>
+                                                   <option value="">Proyecto 3</option>                                                     
+						                      </select>                                                  
+		                         </div>
+                              </div>
+                            </div>
+            </div>
+
+        <div class="col-md-2" >
+              
+               <div class="panel form-horizontal">
+                   
+                    <div class="panel-body bg-panel">
+                       <label class="px-single" ><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+                         <i class="fa fa-calendar" aria-hidden="true" style="color:#008080"></i>                      
+                             <label class="control-label">Desde</label>
+							     <div class="form-group no-margin-hr">
+									          <select class="form-control input-sm">
+                                                   <option value="" selected disabled>01/01/01</option>
+							                       <option value="">01/01/01</option>
+                                                   <option value="">02/01/01</option>
+                                                   <option value="">03/01/01</option>                                                     
+						                      </select>                                                  
+		                         </div>
+                              </div>
+                            </div>                                        
+                                                    
+		</div>
+
+        <div class="col-md-2">
+          <div class="panel form-horizontal">
+                    <div class="panel-body bg-panel">
+                         <i class="fa fa-calendar" aria-hidden="true" style="color:#008080"></i>                      
+                             <label class="control-label">Hasta</label>
+							     <div class="form-group no-margin-hr">
+									          <select class="form-control input-sm">
+                                                   <option value="" selected disabled>01/01/01</option>
+							                       <option value="">01/01/01</option>
+                                                   <option value="">02/01/01</option>
+                                                   <option value="">03/01/01</option>                                                     
+						                      </select>                                                  
+		                         </div>
+                              </div>
+                            </div>
+        </div>
+
+                <div class="col-md-3 ">
+          <div class="panel form-horizontal">
+                    <div class="panel-body bg-panel" id="panelEdited">
+                          <i class="fa fa-gear fa-spin" aria-hidden="true" style="color:#008080;"></i>                      
+                             <label class="control-label">Opciones</label>
+                        <div class="checkbox" style="margin: 0;">
+										<label>
+											<input type="checkbox" value="" class="px">
+											<span class="lbl text-sm">Mostrar Distribución Original</span>
+										</label>
+									</div>
+                        <div class="checkbox" style="margin: 0;">
+										<label>
+											<input type="checkbox" value="" class="px">
+											<span class="lbl text-sm">Mostrar sólo con Dif. Distribución</span>
+										</label>
+									</div>
+                              </div>
+                            </div>
+        </div>
+              
+                
+                 <%--<div class="col-md-6">
+        <div class="panel form-horizontal" >
+            
+            <div class="panel-body" style="background-color:#f0f0f0">
+<div class="col-xs-4">
+    <p class="text-xs" style="margin-bottom:2px;"><span class="label label-success ticket-label text-xs">P</span>&nbsp;&nbsp;Permiso</p>
+    <p class="text-xs" style="margin-bottom:2px;"><span class="label label-success ticket-label text-xs">IN</span>&nbsp;&nbsp;Inasistencia </p>
+    <p class="text-xs" style="margin-bottom:2px;"><span class="label label-success ticket-label text-xs">T</span>&nbsp;&nbsp;Traslado </p>
+    
+
+</div>
+<div class="col-xs-4">
+     <p class="text-xs" style="margin-bottom:2px;"><span class="label label-success ticket-label text-xs">L</span>&nbsp;&nbsp;Licencia </p>
+    <p class="text-xs" style="margin-bottom:2px;"><span class="label label-success ticket-label text-xs">F</span>&nbsp;&nbsp;Personal Finiquitado </p>
+    <p class="text-xs" style="margin-bottom:2px;"><span class="label label-success ticket-label text-xs">1</span>&nbsp;&nbsp;Día Trabajado </p>
+</div>
+                <div class="col-xs-4">
+  <p class="text-xs" style="margin-bottom:2px;"><span class="label ticket-label text-xs" style="background-color:orange">&nbsp;&nbsp;</span>&nbsp;&nbsp;Sin Supervisor </p>
+    <p class="text-xs" style="margin-bottom:2px;"><span class="label ticket-label text-xs" style="background-color:aquamarine">&nbsp;&nbsp;</span>&nbsp;&nbsp;Día Inhábil </p>
+</div>
+
+            </div>
+        </div>
+     </div>--%>
+						                                                                        	  
+
+<div class="col-md-12">
+    <dx:ASPxGridView
+                            id="grdDetalle"
+                            runat="server"
+                            theme="Default"
+                            width="100%"
+                            enablerowscache="False"
+                            font-size="X-Small"
+                            clientinstancename="grdDetalle"    
+                            enablecallbacks="False" 
+                            enabletheming="True"
+                            SettingsEditing-Mode="Batch"
+                            Settings-ShowStatusBar = "Hidden"
+                            AutoGenerateColumns= "false"
+                            >
+                            <Columns>
+                            <dx:GridViewDataCheckColumn width="80" Caption= "Año" FieldName="ano" Name="ano" VisibleIndex="1">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                            <CellStyle CssClass="claseTestCelda" />
+                            </dx:GridViewDataCheckColumn>
+                            <dx:GridViewDataTextColumn width="80" Caption="Mes" FieldName="mes" Name="mes" VisibleIndex="2">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn width="106" Caption="Área" FieldName="area" Name="area" VisibleIndex="3">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+                           
+                            <dx:GridViewDataTextColumn width="100" Caption="Especialidad" FieldName="especialidad" Name="especialidad" VisibleIndex="4">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn width="100" Caption="Cargo" FieldName="cargo" Name="cargo" VisibleIndex="5">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+
+                                 <dx:GridViewDataTextColumn width="50" Caption="R.U.T" FieldName="rut" Name="rut" VisibleIndex="6">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+
+
+                            <dx:GridViewDataTextColumn width="50" Caption="DV" FieldName="dv" Name="dv" VisibleIndex="7">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+
+                                <dx:GridViewDataTextColumn width="140" Caption="Nombre" FieldName="nombre2" Name="nombre2" VisibleIndex="8">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+
+                                <dx:GridViewDataTextColumn width="130" Caption="Días Trabajados" FieldName="dtrabajados" Name="dtrabajados" VisibleIndex="9">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+
+                                 <dx:GridViewDataTextColumn width="100" Caption="Total Horas" FieldName="thoras" Name="thoras" VisibleIndex="10">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+
+                                 <dx:GridViewDataTextColumn width="150" Caption="Costo Empresa" FieldName="cempresa" Name="cempresa" VisibleIndex="11">
+                            <HeaderStyle HorizontalAlign="Center" CssClass="claseTest" />
+                                <cellstyle horizontalalign="Center">
+                                </cellstyle>
+                                <EditFormSettings Visible="false" />
+                            </dx:GridViewDataTextColumn>
+                                
+                            </Columns>
+                            <settingspager Mode="EndlessPaging" PageSize="25">
+                            </settingspager>
+                            <settings showfilterrow="True" ShowGroupPanel="false" VerticalScrollableHeight="360" HorizontalScrollBarMode="auto" VerticalScrollBarMode="auto" UseFixedTableLayout="true"/>
+                            <SettingsEditing BatchEditSettings-ShowConfirmOnLosingChanges="false">
+                            <BatchEditSettings ShowConfirmOnLosingChanges="False" />
+                            </SettingsEditing>
+                            <%--<ClientSideEvents BatchEditEndEditing="grdTrab_BatchEditEndEditing"  />--%>
+                        </dx:AspxGridView>
+
+</div>
+
+             </div>
+
+
+
+
+         </div>
+    </div>
+</div>
+  <%--  <script>
+        $("#cargaLeyenda").on("click", function (e) {
+            e.preventDefault();
+
+            // the rest of your code ...
+        });
+    </script>--%>
+    
+</asp:Content>
+
+ 

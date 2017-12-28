@@ -1,0 +1,100 @@
+﻿<!--
+  Para obtener más información sobre cómo configurar la aplicación ASP.NET, visite
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+<configuration>
+	<configSections>
+		<sectionGroup name="devExpress">
+			<section name="themes" type="DevExpress.Web.ThemesConfigurationSection, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+			<section name="compression" type="DevExpress.Web.CompressionConfigurationSection, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+			<section name="settings" type="DevExpress.Web.SettingsConfigurationSection, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+			<section name="errors" type="DevExpress.Web.ErrorsConfigurationSection, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+			<section name="resources" type="DevExpress.Web.ResourcesConfigurationSection, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" requirePermission="false"/>
+		</sectionGroup>
+	</configSections>
+	<appSettings file="Settings.config">
+		<add key="TituloAplicacion" value="Foco en Obra 2016"/>
+		<add key="GrillaPageSize" value="15"/>
+		<add key="FocoEnObra" value="Foco38Obra2013"/>
+		<add key="ChartImageHandler" value="storage=file;timeout=120;dir=c:\TempImageFiles\;"/>
+	</appSettings>
+	<connectionStrings>
+		<add name="Maestro" connectionString="Data Source=192.168.1.52;Initial Catalog=Foco_WebMaster;Integrated Security=False;Connect Timeout=200;USER ID=foco_webmaster;password=Foco38Web1835"/>
+		<add name="Foco_DemoConnectionString" connectionString="Data Source=focoenobra2.database.windows.net;Initial Catalog=Foco_Demo;User ID=usu_demo;Password=foco2017$" providerName="System.Data.SqlClient"/>
+		<add name="cnxCalidad" connectionString="Data Source=192.168.1.52;Initial Catalog=Foco_CVV_Mjeldres;Persist Security Info=True;User ID=foco_cvv;Password=Foco38Web1835" providerName="System.Data.SqlClient"/>
+	</connectionStrings>
+	<system.web>
+		<httpHandlers>
+			<!--<add path="ChartImg.axd" verb="GET,HEAD,POST" type="System.Web.UI.DataVisualization.Charting.ChartHttpHandler, System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" validate="false" />
+      <add path="AjaxFileUploadHandler.axd" verb="*" type="AjaxControlToolkit.AjaxFileUploadHandler,          AjaxControlToolkit" />
+      <add path="ASPxUploadProgressHandlerPage.ashx" verb="GET,POST" type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />-->
+			<add path="DX.ashx" verb="GET,POST" type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" validate="false"/>
+			<!--<add path="Reserved.ReportViewerWebControl.axd" verb="*" type="Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91" validate="false" />-->
+			<add verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+		</httpHandlers>
+		<httpModules>
+			<!--<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />-->
+			<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule"/>
+		</httpModules>
+		<compilation debug="true" strict="false" explicit="true" targetFramework="4.0">
+			<assemblies>
+				<add assembly="DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="DevExpress.Web.ASPxThemes.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+				<add assembly="DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="DevExpress.Data.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="DevExpress.Printing.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+				<add assembly="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="DevExpress.RichEdit.v17.2.Core, Version=17.2.3.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="System.Web.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="System.Data.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/>
+				<add assembly="DevExpress.Web.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="DevExpress.Data.v17.1, Version=17.1.4.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="DevExpress.Printing.v17.1.Core, Version=17.1.4.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="DevExpress.Office.v17.1.Core, Version=17.1.4.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/>
+				<add assembly="DevExpress.RichEdit.v17.1.Core, Version=17.1.4.0, Culture=neutral, PublicKeyToken=B88D1754D700E49A"/></assemblies>
+		</compilation>
+		<httpRuntime/>
+	</system.web>
+	<system.webServer>
+		<validation validateIntegratedModeConfiguration="false"/>
+		<modules runAllManagedModulesForAllRequests="true">
+			<!--<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule" />-->
+			<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" name="ASPxHttpHandlerModule"/>
+		</modules>
+		<handlers>
+			<remove name="ChartImageHandler"/>
+			<!--<add name="ChartImageHandler" preCondition="integratedMode" verb="GET,HEAD,POST" path="ChartImg.axd" type="System.Web.UI.DataVisualization.Charting.ChartHttpHandler, System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+      <add name="AjaxFileUploadHandler" verb="*" path="AjaxFileUploadHandler.axd" type="AjaxControlToolkit.AjaxFileUploadHandler, AjaxControlToolkit" />
+      -->
+			<!--<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" name="ASPxHttpHandlerModule" path="DX.ashx" preCondition="integratedMode" />-->
+			<!--
+      <add name="ASPxUploadProgressHandler" preCondition="integratedMode" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />-->
+			<add type="DevExpress.Web.ASPxHttpHandlerModule, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" verb="GET,POST" path="DX.ashx" name="ASPxHttpHandlerModule" preCondition="integratedMode"/>
+			<!--<add name="ReportViewerWebControlHandler" verb="*" path="Reserved.ReportViewerWebControl.axd" preCondition="integratedMode" type="Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91" />-->
+			<add name="ASPxUploadProgressHandler" preCondition="integratedMode" verb="GET,POST" path="ASPxUploadProgressHandlerPage.ashx" type="DevExpress.Web.ASPxUploadProgressHttpHandler, DevExpress.Web.v17.2, Version=17.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"/>
+		</handlers>
+	</system.webServer>
+	<system.codedom>
+		<compilers>
+			<compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:6 /nowarn:1659;1699;1701"/>
+			<compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:14 /nowarn:41008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+"/>
+		</compilers>
+	</system.codedom>
+	<devExpress>
+		<themes enableThemesAssembly="true" styleSheetTheme="" theme="" customThemeAssemblies="" baseColor="" font=""/>
+		<compression enableHtmlCompression="false" enableCallbackCompression="true" enableResourceCompression="true" enableResourceMerging="true"/>
+		<settings doctypeMode="Xhtml" rightToLeft="false" embedRequiredClientLibraries="false" ieCompatibilityVersion="edge" accessibilityCompliant="false" bootstrapMode="" checkReferencesToExternalScripts="true" protectControlState="true"/>
+		<errors callbackErrorRedirectUrl=""/>
+	</devExpress>
+	<system.serviceModel>
+		<bindings>
+			<basicHttpBinding>
+				<binding name="Service1Soap"/>
+			</basicHttpBinding>
+		</bindings>
+		<client>
+			<endpoint address="http://localhost:25686/Servicios.asmx" binding="basicHttpBinding" bindingConfiguration="Service1Soap" contract="wsLogin.Service1Soap" name="Service1Soap"/>
+		</client>
+	</system.serviceModel>
+</configuration>
